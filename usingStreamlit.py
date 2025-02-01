@@ -31,8 +31,8 @@ def converse(input_text, model_name):
     
     return "Sorry, I couldn't generate a response. Please try again."
 
-st.title('My bot with system context')
-st.write('Interact with the system using a selected model and system context of your choice.')
+st.title('My Sample bot')
+st.write('Interact with the system using a selected model of your choice.')
 
 model_name = st.selectbox("Model Name", allowed_models)
 input_text = st.text_input("Input Text")
