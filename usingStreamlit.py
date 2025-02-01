@@ -15,11 +15,10 @@ conversation = MaxSystemContextConversation()
 def load_model(selected_model):
     return GroqModel(api_key=API_KEY, name=selected_model)
 
-def converse(input_text, system_context, model_name):
+def converse(input_text, model_name):
     llm = load_model(model_name)
     agent = SimpleConversationAgent(llm=llm, conversation=conversation)
 
-    agent.conversation.system_context = SystemMessage(content=system_context)
 
     input_text = str(input_text)
 
@@ -35,10 +34,9 @@ def converse(input_text, system_context, model_name):
 st.title('My bot with system context')
 st.write('Interact with the system using a selected model and system context of your choice.')
 
-system_context = st.text_input("System Context")
 model_name = st.selectbox("Model Name", allowed_models)
 input_text = st.text_input("Input Text")
 
 if st.button("Submit"):
-    response = converse(input_text, system_context, model_name)
+    response = converse(input_text, model_name)
     st.text_area("Response", value=response, height=200)
